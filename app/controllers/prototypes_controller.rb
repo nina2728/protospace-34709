@@ -3,10 +3,15 @@ class PrototypesController < ApplicationController
   end
   
   def new
-    @prototype = Prototype.new
+    @prototype = Prototype.new(prototype_params)
   end
 
   def create
+    if @prototype.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
